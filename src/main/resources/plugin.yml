@@ -1,0 +1,11 @@
+name: DHSAttractions
+version: '0.1-SNAPSHOT'
+main: capen.dev.dhsAttractions.Main
+api-version: '1.21'
+prefix: MWcore
+load: STARTUP
+authors: [ CapenDev ]
+description: General command and contol plugin which provides commands and functionality that supports magicworks and its custom plugins.
+website: capendev.com
+commands:
+  dhsride:
