@@ -13,6 +13,8 @@ public class TOTBlocks {
 Ensure blocks get put in the startup state when ride begins
 Define all block functions for each section (use enum section for details)
 Correlate functions with redstone block locations
+
+#This is the second test
  */
     //connecting other classes
     public static Main main;
