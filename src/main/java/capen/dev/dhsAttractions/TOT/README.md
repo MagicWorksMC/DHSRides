@@ -4,7 +4,7 @@
 Ride is complex compared to first two attractions designed. Block naming convection is a bit different from standard. See enums for description
 
 **Enums**
-- Block 1a [Alpha Lift] (Bottom | Boiler Room | Hallway | Dim): clear (at bottom), restraintsunlocked, restraintsdoorsunlocked, dispatcha (up), dispatchb (out of lift) 
+- Block 1a [Alpha Lift] (Bottom | Boiler Room | Hallway | Dim): clear (at bottom), restraintsunlocked, restraintsdoorsunlocked, restraintslocked, dispatcha (up), dispatchb (out of lift) 
 - Block 1b [Bravo Lift] (Bottom | Boiler Room | Hallway | Dim): clear (at bottom), restraintsunlocked, restraintsdoorsunlocked, dispatcha (up), dispatchb (out of lift)
 - Block 2a [Alpha Dim Enter]: clear, occupied, holding
 - Block 2b [Bravo Dim Enter]: clear, occupied, holding
