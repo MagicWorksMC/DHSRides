@@ -1,9 +1,9 @@
 package capen.dev.dhsAttractions.TOT;
 
 import capen.dev.dhsAttractions.Main;
-import capen.dev.dhsAttractions.TOT.Enums.Block1;
-import capen.dev.dhsAttractions.TOT.Enums.Block2;
-import capen.dev.dhsAttractions.TOT.Enums.Block6;
+import capen.dev.dhsAttractions.TOT.Enums.Block1a;
+import capen.dev.dhsAttractions.TOT.Enums.Block1b;
+import capen.dev.dhsAttractions.TOT.Enums.Block99;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -62,7 +62,7 @@ public class TOTTimers {
                     return;
                 }
                 if (secLoad == 5) {
-                    if (TOTBlocks.getblock2() == Block2.clear) {
+                    if (TOTBlocks.getblock2() == Block1b.clear) {
                         //dispatch redstone block
                         blocks.LoadDispatch();
                         totManager.msgOps("Block1 dispatched");
@@ -74,11 +74,11 @@ public class TOTTimers {
                 if (secLoad == 10) {
                     //closing restraints
                     blocks.CloseRestraint();
-                    TOTBlocks.setblock1(Block1.holding);
+                    TOTBlocks.setblock1(Block1a.holding);
                 }
                     //closing gates
                 if (secLoad == 15) {
-                    TOTBlocks.setblock1(Block1.restraintsunlocked);
+                    TOTBlocks.setblock1(Block1a.restraintsunlocked);
                     blocks.CloseGates();
                 }
                 if (secLoad == 16) {
@@ -87,7 +87,7 @@ public class TOTTimers {
                 }
                     //open gates
                 if (secLoad == 50) {
-                    TOTBlocks.setblock1(Block1.restraintsgatesunlocked);
+                    TOTBlocks.setblock1(Block1a.restraintsgatesunlocked);
                     blocks.OpenGates();
                 }
                 if (secLoad == 60) {
@@ -113,7 +113,7 @@ public class TOTTimers {
                     return;
                 }
                 if (secLoad == 5) {
-                    if (TOTBlocks.getblock2() == Block2.clear) {
+                    if (TOTBlocks.getblock2() == Block1b.clear) {
                         //dispatch redstone block
                         blocks.LoadDispatch();
                         totManager.msgOps("Block1 dispatched");
@@ -125,11 +125,11 @@ public class TOTTimers {
                 if (secLoad == 10) {
                     //closing restraints
                     blocks.CloseRestraint();
-                    TOTBlocks.setblock1(Block1.holding);
+                    TOTBlocks.setblock1(Block1a.holding);
                 }
                 //closing gates
                 if (secLoad == 15) {
-                    TOTBlocks.setblock1(Block1.restraintsunlocked);
+                    TOTBlocks.setblock1(Block1a.restraintsunlocked);
                     blocks.CloseGates();
                 }
                 if (secLoad == 16) {
@@ -138,7 +138,7 @@ public class TOTTimers {
                 }
                 //open gates
                 if (secLoad == 50) {
-                    TOTBlocks.setblock1(Block1.restraintsgatesunlocked);
+                    TOTBlocks.setblock1(Block1a.restraintsgatesunlocked);
                     blocks.OpenGates();
                 }
                 if (secLoad == 60) {
@@ -185,7 +185,7 @@ public class TOTTimers {
                     return;
                 }
                 if (secLoad == 5) {
-                    if (TOTBlocks.getblock2() == Block2.clear) {
+                    if (TOTBlocks.getblock2() == Block1b.clear) {
                         //dispatch redstone block
                         blocks.LoadDispatch();
                         totManager.msgOps("Block1 dispatched");
@@ -197,11 +197,11 @@ public class TOTTimers {
                 if (secLoad == 10) {
                     //closing restraints
                     blocks.CloseRestraint();
-                    TOTBlocks.setblock1(Block1.holding);
+                    TOTBlocks.setblock1(Block1a.holding);
                 }
                 //closing gates
                 if (secLoad == 15) {
-                    TOTBlocks.setblock1(Block1.restraintsunlocked);
+                    TOTBlocks.setblock1(Block1a.restraintsunlocked);
                     blocks.CloseGates();
                 }
                 if (secLoad == 16) {
@@ -210,7 +210,7 @@ public class TOTTimers {
                 }
                 //open gates
                 if (secLoad == 50) {
-                    TOTBlocks.setblock1(Block1.restraintsgatesunlocked);
+                    TOTBlocks.setblock1(Block1a.restraintsgatesunlocked);
                     blocks.OpenGates();
                 }
                 if (secLoad == 60) {
@@ -236,7 +236,7 @@ public class TOTTimers {
                     return;
                 }
                 if (secLoad == 5) {
-                    if (TOTBlocks.getblock2() == Block2.clear) {
+                    if (TOTBlocks.getblock2() == Block1b.clear) {
                         //dispatch redstone block
                         blocks.LoadDispatch();
                         totManager.msgOps("Block1 dispatched");
@@ -248,11 +248,11 @@ public class TOTTimers {
                 if (secLoad == 10) {
                     //closing restraints
                     blocks.CloseRestraint();
-                    TOTBlocks.setblock1(Block1.holding);
+                    TOTBlocks.setblock1(Block1a.holding);
                 }
                 //closing gates
                 if (secLoad == 15) {
-                    TOTBlocks.setblock1(Block1.restraintsunlocked);
+                    TOTBlocks.setblock1(Block1a.restraintsunlocked);
                     blocks.CloseGates();
                 }
                 if (secLoad == 16) {
@@ -261,7 +261,7 @@ public class TOTTimers {
                 }
                 //open gates
                 if (secLoad == 50) {
-                    TOTBlocks.setblock1(Block1.restraintsgatesunlocked);
+                    TOTBlocks.setblock1(Block1a.restraintsgatesunlocked);
                     blocks.OpenGates();
                 }
                 if (secLoad == 60) {
@@ -311,7 +311,7 @@ public class TOTTimers {
                 }
                 //testing next block
                 if (secUnload == 6) {
-                    if (TOTBlocks.getblock1() == Block1.clear) {
+                    if (TOTBlocks.getblock1() == Block1a.clear) {
                         //change later
                         blocks.Dispatch6();
                         totManager.msgOps("block6 dispatched");
@@ -325,12 +325,12 @@ public class TOTTimers {
                 //open restraints
                 if (secUnload == 34) {
                     blocks.OpenRestraints();
-                    TOTBlocks.setblock6(Block6.restraints);
+                    TOTBlocks.setblock6(Block99.restraints);
                 }
                 if (secUnload == 35) {
                     totManager.msgOps("block6 timer started");
                 }
-                if (secUnload <= 70 && secUnload >= 3 && (TOTBlocks.getblock1() == Block1.dispatch || TOTBlocks.getblock1() == Block1.clear)) {
+                if (secUnload <= 70 && secUnload >= 3 && (TOTBlocks.getblock1() == Block1a.dispatch || TOTBlocks.getblock1() == Block1a.clear)) {
                     totManager.msgLoad(ChatColor.WHITE + "Train is apporaching station in " + ChatColor.AQUA + (secUnload - 1) + ChatColor.WHITE + " seconds!");
                     //change later
                 }

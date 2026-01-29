@@ -29,93 +29,93 @@ public class TOTCommandManager {
     public void totChangeBlockState(String block, String status) {
         if (block.equalsIgnoreCase("block1")) {
             if (status.equalsIgnoreCase("holding")) {
-                TOTBlocks.setblock1(Block1.holding);
+                TOTBlocks.setblock1(Block1a.holding);
             }
             if (status.equalsIgnoreCase("restraintsgatesunlocked")) {
-                TOTBlocks.setblock1(Block1.restraintsgatesunlocked);
+                TOTBlocks.setblock1(Block1a.restraintsgatesunlocked);
             }
             if (status.equalsIgnoreCase("timer")) {
                 totTimers.loadingTimer();
             }
             if (status.equalsIgnoreCase("unlocked")) {
-                TOTBlocks.setblock1(Block1.restraintsunlocked);
-                if (TOTBlocks.getblock1() == Block1.restraintsunlocked) {
+                TOTBlocks.setblock1(Block1a.restraintsunlocked);
+                if (TOTBlocks.getblock1() == Block1a.restraintsunlocked) {
                 }
             }
             if (status.equalsIgnoreCase("clear")) {
-                TOTBlocks.setblock1(Block1.clear);
+                TOTBlocks.setblock1(Block1a.clear);
             }
         }
         if (block.equalsIgnoreCase("block2")) {
             if (status.equalsIgnoreCase("holding")) {
-               TOTBlocks.setblock2(Block2.holding);
+               TOTBlocks.setblock2(Block1b.holding);
 
             }
             if (status.equalsIgnoreCase("occupied")) {
-                TOTBlocks.setblock2(Block2.occupied);
+                TOTBlocks.setblock2(Block1b.occupied);
 
             }
             if (status.equalsIgnoreCase("clear")) {
-               TOTBlocks.setblock2(Block2.clear);
+               TOTBlocks.setblock2(Block1b.clear);
 
             }
         }
         if (block.equalsIgnoreCase("block3")) {
             if (status.equalsIgnoreCase("holding")) {
-                TOTBlocks.setblock3(Block3.holding);
+                TOTBlocks.setblock3(Block2a.holding);
 
             }
             if (status.equalsIgnoreCase("occupied")) {
-                TOTBlocks.setblock3(Block3.occupied);
+                TOTBlocks.setblock3(Block2a.occupied);
 
             }
             if (status.equalsIgnoreCase("clear")) {
-                TOTBlocks.setblock3(Block3.clear);
-                if (TOTBlocks.getblock2() == Block2.holding) {
+                TOTBlocks.setblock3(Block2a.clear);
+                if (TOTBlocks.getblock2() == Block1b.holding) {
                     totBlocks.Release2();
                 }
             }
         }
         if (block.equalsIgnoreCase("block4")) {
             if (status.equalsIgnoreCase("holding")) {
-               TOTBlocks.setblock4(Block4.holding);
+               TOTBlocks.setblock4(Block2b.holding);
             }
             if (status.equalsIgnoreCase("occupied")) {
-               TOTBlocks.setblock4(Block4.occupied);
+               TOTBlocks.setblock4(Block2b.occupied);
             }
             if (status.equalsIgnoreCase("clear")) {
-               TOTBlocks.setblock4(Block4.clear);
-                if (TOTBlocks.getblock3() == Block3.holding) {
+               TOTBlocks.setblock4(Block2b.clear);
+                if (TOTBlocks.getblock3() == Block2a.holding) {
                     totBlocks.Release3();
                 }
             }
         }
         if (block.equalsIgnoreCase("block5")) {
             if (status.equalsIgnoreCase("holding")) {
-                TOTBlocks.setblock5(Block5.holding);
+                TOTBlocks.setblock5(Block3.holding);
             }
             if (status.equalsIgnoreCase("clear")) {
-                TOTBlocks.setblock5(Block5.clear);
-                if (TOTBlocks.getblock4() == Block4.holding) {
+                TOTBlocks.setblock5(Block3.clear);
+                if (TOTBlocks.getblock4() == Block2b.holding) {
                     totBlocks.Release4();
                 }
             }
         }
         if (block.equalsIgnoreCase("block6")) {
             if (status.equalsIgnoreCase("holding")) {
-               TOTBlocks.setblock6(Block6.holding);
+               TOTBlocks.setblock6(Block99.holding);
 
             }
             //This is to start timer for unload dispatch
             if (status.equalsIgnoreCase("Unlocked")) {
-               TOTBlocks.setblock6(Block6.restraints);
+               TOTBlocks.setblock6(Block99.restraints);
             }
             if (status.equalsIgnoreCase("Timer")) {
                 totTimers.unloadingTimer();
             }
             if (status.equalsIgnoreCase("clear")) {
-               TOTBlocks.setblock6(Block6.clear);
-                if (TOTBlocks.getblock5() == Block5.holding) {
+               TOTBlocks.setblock6(Block99.clear);
+                if (TOTBlocks.getblock5() == Block3.holding) {
                    totBlocks.Release5();
                 }
             }
@@ -130,27 +130,27 @@ public class TOTCommandManager {
     //block7
     public void totBlockTest(String block) {
         if (block.equalsIgnoreCase("block3")) {
-            if (TOTBlocks.getblock3() == Block3.holding) {
+            if (TOTBlocks.getblock3() == Block2a.holding) {
                 totBlocks.Hold2();
-                TOTBlocks.setblock2(Block2.holding);
+                TOTBlocks.setblock2(Block1b.holding);
             }
         }
         if (block.equalsIgnoreCase("block4")) {
-            if (TOTBlocks.getblock4() == Block4.holding) {
+            if (TOTBlocks.getblock4() == Block2b.holding) {
                 totBlocks.Hold3();
-               TOTBlocks.setblock3(Block3.holding);
+               TOTBlocks.setblock3(Block2a.holding);
             }
         }
         if (block.equalsIgnoreCase("block5")) {
-            if (TOTBlocks.getblock5() == Block5.holding) {
+            if (TOTBlocks.getblock5() == Block3.holding) {
                totBlocks.Hold4();
-               TOTBlocks.setblock4(Block4.holding);
+               TOTBlocks.setblock4(Block2b.holding);
             }
         }
         if (block.equalsIgnoreCase("block6")) {
-            if (TOTBlocks.getblock6() != Block6.clear) {
+            if (TOTBlocks.getblock6() != Block99.clear) {
                 totBlocks.Hold5();
-                TOTBlocks.setblock5(Block5.holding);
+                TOTBlocks.setblock5(Block3.holding);
             }
         }
     }
