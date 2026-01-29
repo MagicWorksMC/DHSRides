@@ -7,7 +7,7 @@ public enum Block1b {
     dispatchb("dispatchb", 0),
     restraintsunlocked("restraintsunlocked", 0),
     holding("holding", 0),
-    restraintsgatesunlocked("restraintsgatesunlocked", 0);
+    restraintsdoorsunlocked("restraintsdoorsunlocked", 0);
 
     private Block1b(final String name, final int ordinal) {
 

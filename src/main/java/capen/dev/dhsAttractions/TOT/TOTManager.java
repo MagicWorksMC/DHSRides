@@ -90,12 +90,11 @@ public class TOTManager implements Listener {
         totTimers.checkTimer();
         msgOps("Ride is activated at " + getESTTime());
 
-        TOTBlocks.setblock1(Block1a.restraintsunlocked);
-        TOTBlocks.setblock2(Block1b.clear);
-        TOTBlocks.setblock3(Block2a.clear);
-        TOTBlocks.setblock4(Block2b.clear);
-        TOTBlocks.setblock5(Block3.occupied);
-        TOTBlocks.setblock6(Block99.restraints);
+        TOTBlocks.setblock1a(Block1a.restraintsunlocked);
+        TOTBlocks.setblock1b(Block1b.clear);
+        TOTBlocks.setblock2(Block2.clear);
+        TOTBlocks.setblock3(Block3.occupied);
+        TOTBlocks.setblock99(Block99.clear);
     }
 
     /*Ride Waiting Function

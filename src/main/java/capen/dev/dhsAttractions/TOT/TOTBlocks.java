@@ -41,7 +41,7 @@ Correlate functions with redstone block locations
     public static void setblock1a(final Block1a b1astate) {
         TOTBlocks.b1astate = b1astate;
     }
-    public static Block1a getblock1() { return b1astate; }
+    public static Block1a getblock1a() { return b1astate; }
     public static void setblock1b(final Block1b b1bstate) {
         TOTBlocks.b1bstate = b1bstate;
     }
