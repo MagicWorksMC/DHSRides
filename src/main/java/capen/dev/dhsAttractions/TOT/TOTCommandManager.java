@@ -47,6 +47,9 @@ public class TOTCommandManager {
             if (status.equalsIgnoreCase("clear")) {
                 TOTBlocks.setblock1a(Block1a.clear);
             }
+            if (status.equalsIgnoreCase("timer")) {
+                totTimers.boardingATimer();
+            }
         }
 
         if (block.equalsIgnoreCase("block1b")) {
@@ -67,6 +70,9 @@ public class TOTCommandManager {
             }
             if (status.equalsIgnoreCase("clear")) {
                 TOTBlocks.setblock1b(Block1b.clear);
+            }
+            if (status.equalsIgnoreCase("timer")) {
+                totTimers.boardingBTimer();
             }
         }
 
@@ -97,7 +103,7 @@ public class TOTCommandManager {
             }
             if (status.equalsIgnoreCase("dispatch")) {
                 TOTBlocks.setblock3(Block3.dispatch);
-                totTimers.unloadingTimer();
+                //totTimers.unloadingTimer();
             }
             if (status.equalsIgnoreCase("clear")) {
                 TOTBlocks.setblock3(Block3.clear);

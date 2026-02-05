@@ -1,8 +1,11 @@
 package capen.dev.dhsAttractions.TOT;
 
 import capen.dev.dhsAttractions.Main;
+import capen.dev.dhsAttractions.RRC.Enums.Block3;
+import capen.dev.dhsAttractions.SDD.SDDBlocks;
 import capen.dev.dhsAttractions.TOT.Enums.Block1a;
 import capen.dev.dhsAttractions.TOT.Enums.Block1b;
+import capen.dev.dhsAttractions.TOT.Enums.Block2;
 import capen.dev.dhsAttractions.TOT.Enums.Block99;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
@@ -20,7 +23,10 @@ public class TOTTimers {
     private static TOTManager totManager;
     public static TOTBlocks blocks;
 
-    private int secLoad;
+    private int secBoardA;
+    private int secBoardB;
+    private int secTowerA;
+    private int secTowerB;
     private int secUnload;
     private int secCheck;
 
@@ -51,104 +57,78 @@ public class TOTTimers {
     if time = 2 checks block2 if good sends if not sets sec to 9
     1 sec cancel
      */
-    public void loadingTimer() {
-        secLoad = 60;
+    public void boardingATimer() {
+        secBoardA = 75;
         loadingTask = new BukkitRunnable() {
             @Override
             public void run() {
-                if (secLoad == 1) {
+                if (secBoardA == 1) {
+                    Tower1Timer();
                     totManager.removeAllLoad();
                     this.cancel();
                     return;
                 }
-                if (secLoad == 5) {
-                    if (TOTBlocks.getblock2() == Block1b.clear) {
-                        //dispatch redstone block
-                        blocks.LoadDispatch();
-                        totManager.msgOps("Block1 dispatched");
-                    } else {
-                        secLoad = 9;
-                        totManager.msgOps("Block1 waiting block2");
-                    }
+                if (secBoardA == 4) {
+                    blocks.doorCloseA();
                 }
-                if (secLoad == 10) {
-                    //closing restraints
-                    blocks.CloseRestraint();
-                    TOTBlocks.setblock1(Block1a.holding);
+                if (secBoardA == 11) {
+                    blocks.closeRestraintsA();
+                    TOTBlocks.setblock1a(Block1a.holding);
                 }
-                    //closing gates
-                if (secLoad == 15) {
-                    TOTBlocks.setblock1(Block1a.restraintsunlocked);
-                    blocks.CloseGates();
+                if (secBoardA == 12) {
+                    totManager.msgLoad(ChatColor.WHITE + "Restraints locking in " + ChatColor.AQUA + "1" + ChatColor.WHITE + " second!");
                 }
-                if (secLoad == 16) {
-                    totManager.msgLoad(ChatColor.WHITE + "Gates closing in " + ChatColor.AQUA + "1" + ChatColor.WHITE + " second!");
-                    //change later
+                if (secBoardA <= 54 && secBoardA >= 13) {
+                    totManager.msgLoad(ChatColor.WHITE + "Restraints locking in " + ChatColor.AQUA + (secBoardA - 11) + ChatColor.WHITE + " seconds!");
                 }
-                    //open gates
-                if (secLoad == 50) {
-                    TOTBlocks.setblock1(Block1a.restraintsgatesunlocked);
-                    blocks.OpenGates();
+                if (secBoardA == 56) {
+                    blocks.doorOpenA();
                 }
-                if (secLoad == 60) {
-                    totManager.msgOps("Block1 timer started");
+                if (secBoardA == 70) {
+                    blocks.boardingA();
                 }
-                if (secLoad <= 50 && secLoad >= 17) {
-                    totManager.msgLoad(ChatColor.WHITE + "Gates closing in " + ChatColor.AQUA + (secLoad - 15) + ChatColor.WHITE + " seconds!");
-                    //change later
+                if (secBoardA <= 80) {
+                    totManager.msgOps("BoardA: Timer at" + secBoardA);
                 }
-                --secLoad;
+                --secBoardA;
             }
         };
         loadingTask.runTaskTimer((Plugin)main.getInstance(), 0L, 20L);
     }
-    public void loading2Timer() {
-        secLoad = 60;
+    public void boardingBTimer() {
+        secBoardB = 80;
         loading2Task = new BukkitRunnable() {
             @Override
             public void run() {
-                if (secLoad == 1) {
-                    totManager.removeAllLoad();
+                if (secBoardB == 1) {
+                    Tower2Timer();
+                    totManager.removeAllLoad2();
                     this.cancel();
                     return;
                 }
-                if (secLoad == 5) {
-                    if (TOTBlocks.getblock2() == Block1b.clear) {
-                        //dispatch redstone block
-                        blocks.LoadDispatch();
-                        totManager.msgOps("Block1 dispatched");
-                    } else {
-                        secLoad = 9;
-                        totManager.msgOps("Block1 waiting block2");
-                    }
+                if (secBoardB == 4) {
+                    blocks.doorCloseB();
                 }
-                if (secLoad == 10) {
-                    //closing restraints
-                    blocks.CloseRestraint();
-                    TOTBlocks.setblock1(Block1a.holding);
+                if (secBoardB == 11) {
+                    blocks.closeRestraintsB();
+                    TOTBlocks.setblock1b(Block1b.holding);
                 }
-                //closing gates
-                if (secLoad == 15) {
-                    TOTBlocks.setblock1(Block1a.restraintsunlocked);
-                    blocks.CloseGates();
+                if (secBoardB == 12) {
+                    totManager.msgLoad2(ChatColor.WHITE + "Restraints locking in " + ChatColor.AQUA + "1" + ChatColor.WHITE + " second!");
                 }
-                if (secLoad == 16) {
-                    totManager.msgLoad(ChatColor.WHITE + "Gates closing in " + ChatColor.AQUA + "1" + ChatColor.WHITE + " second!");
-                    //change later
+                if (secBoardB <= 54 && secBoardB >= 13) {
+                    totManager.msgLoad2(ChatColor.WHITE + "Restraints locking in " + ChatColor.AQUA + (secBoardB - 11) + ChatColor.WHITE + " second!");
                 }
-                //open gates
-                if (secLoad == 50) {
-                    TOTBlocks.setblock1(Block1a.restraintsgatesunlocked);
-                    blocks.OpenGates();
+                if (secBoardB == 56) {
+                    blocks.doorOpenB();
                 }
-                if (secLoad == 60) {
-                    totManager.msgOps("Block1 timer started");
+                if (secBoardB == 70) {
+                    blocks.bottomB();
                 }
-                if (secLoad <= 50 && secLoad >= 17) {
-                    totManager.msgLoad(ChatColor.WHITE + "Gates closing in " + ChatColor.AQUA + (secLoad - 15) + ChatColor.WHITE + " seconds!");
-                    //change later
+                if (secBoardB <= 80) {
+                    totManager.msgOps("BoardB: Timer at" + secBoardB);
                 }
-                --secLoad;
+                --secBoardB;
             }
         };
         loading2Task.runTaskTimer((Plugin)main.getInstance(), 0L, 20L);
@@ -175,103 +155,91 @@ public class TOTTimers {
         1 dispatch and cancel
          */
     public void Tower1Timer() {
-        secLoad = 60;
+        secTowerA = 59;
         tower1Task = new BukkitRunnable() {
             @Override
             public void run() {
-                if (secLoad == 1) {
-                    totManager.removeAllLoad();
+                if (secTowerA == 1) {
+                    blocks.dispatchA2();
                     this.cancel();
                     return;
                 }
-                if (secLoad == 5) {
-                    if (TOTBlocks.getblock2() == Block1b.clear) {
+                if (secTowerA == 5) {
+                    if (TOTBlocks.getblock2() == Block2.clear) {
                         //dispatch redstone block
-                        blocks.LoadDispatch();
-                        totManager.msgOps("Block1 dispatched");
+                        totManager.msgOps("a->d");
                     } else {
-                        secLoad = 9;
-                        totManager.msgOps("Block1 waiting block2");
+                        secTowerA = 6;
+                        totManager.msgOps("a -- b");
                     }
                 }
-                if (secLoad == 10) {
-                    //closing restraints
-                    blocks.CloseRestraint();
-                    TOTBlocks.setblock1(Block1a.holding);
+                if (secTowerA == 7) {
+                    blocks.demA1();
                 }
-                //closing gates
-                if (secLoad == 15) {
-                    TOTBlocks.setblock1(Block1a.restraintsunlocked);
-                    blocks.CloseGates();
+                if (secTowerA == 8) {
+                    blocks.demA15();
                 }
-                if (secLoad == 16) {
-                    totManager.msgLoad(ChatColor.WHITE + "Gates closing in " + ChatColor.AQUA + "1" + ChatColor.WHITE + " second!");
-                    //change later
+                if (secTowerA == 11) {
+                    blocks.demA4();
                 }
-                //open gates
-                if (secLoad == 50) {
-                    TOTBlocks.setblock1(Block1a.restraintsgatesunlocked);
-                    blocks.OpenGates();
+                if (secTowerA == 54) {
+                    blocks.hallwayA1();
                 }
-                if (secLoad == 60) {
-                    totManager.msgOps("Block1 timer started");
+                if (secTowerA == 55) {
+                    blocks.hallwayA15();
                 }
-                if (secLoad <= 50 && secLoad >= 17) {
-                    totManager.msgLoad(ChatColor.WHITE + "Gates closing in " + ChatColor.AQUA + (secLoad - 15) + ChatColor.WHITE + " seconds!");
-                    //change later
+                if (secTowerA == 59) {
+                    blocks.hallwayA5();
                 }
-                --secLoad;
+                if (secTowerA <= 59) {
+                    totManager.msgOps("A: Timer at" + secTowerA);
+                }
+                --secTowerA;
             }
         };
         tower1Task.runTaskTimer((Plugin)main.getInstance(), 0L, 20L);
     }
     public void Tower2Timer() {
-        secLoad = 60;
+        secTowerB = 59;
         tower2Task = new BukkitRunnable() {
             @Override
             public void run() {
-                if (secLoad == 1) {
-                    totManager.removeAllLoad();
+                if (secTowerB == 1) {
+                    blocks.dispatchB2();
                     this.cancel();
                     return;
                 }
-                if (secLoad == 5) {
-                    if (TOTBlocks.getblock2() == Block1b.clear) {
+                if (secTowerB == 5) {
+                    if (TOTBlocks.getblock2() == Block2.clear) {
                         //dispatch redstone block
-                        blocks.LoadDispatch();
-                        totManager.msgOps("Block1 dispatched");
+                        totManager.msgOps("b->d");
                     } else {
-                        secLoad = 9;
-                        totManager.msgOps("Block1 waiting block2");
+                        secTowerB = 6;
+                        totManager.msgOps("a -- b");
                     }
                 }
-                if (secLoad == 10) {
-                    //closing restraints
-                    blocks.CloseRestraint();
-                    TOTBlocks.setblock1(Block1a.holding);
+                if (secTowerB == 8) {
+                    blocks.demB1();
                 }
-                //closing gates
-                if (secLoad == 15) {
-                    TOTBlocks.setblock1(Block1a.restraintsunlocked);
-                    blocks.CloseGates();
+                if (secTowerB == 9) {
+                    blocks.demB15();
                 }
-                if (secLoad == 16) {
-                    totManager.msgLoad(ChatColor.WHITE + "Gates closing in " + ChatColor.AQUA + "1" + ChatColor.WHITE + " second!");
-                    //change later
+                if (secTowerB == 13) {
+                    blocks.demB5();
                 }
-                //open gates
-                if (secLoad == 50) {
-                    TOTBlocks.setblock1(Block1a.restraintsgatesunlocked);
-                    blocks.OpenGates();
+                if (secTowerB == 55) {
+                    blocks.hallwayB1();
                 }
-                if (secLoad == 60) {
-                    totManager.msgOps("Block1 timer started");
+                if (secTowerB == 56) {
+                    blocks.hallwayB15();
                 }
-                if (secLoad <= 50 && secLoad >= 17) {
-                    totManager.msgLoad(ChatColor.WHITE + "Gates closing in " + ChatColor.AQUA + (secLoad - 15) + ChatColor.WHITE + " seconds!");
-                    //change later
+                if (secTowerB == 59) {
+                    blocks.hallwayB4();
                 }
-                --secLoad;
+                if (secTowerB <= 59) {
+                    totManager.msgOps("B: Timer at" + secTowerB);
+                }
+                --secTowerB;
             }
         };
         tower2Task.runTaskTimer((Plugin)main.getInstance(), 0L, 20L);
@@ -296,45 +264,57 @@ public class TOTTimers {
     2 send message
     1 prepare to board and cancel
      */
+
     public void unloadingTimer() {
-        secUnload = 36;
+        secUnload = 0;
         unloadingTask = new BukkitRunnable() {
             @Override
             public void run() {
-                if (secUnload == 1) {
+                if (secUnload == 86) {
                     this.cancel();
-                    totManager.msgLoad(ChatColor.WHITE + "Prepare to Board!");
                     return;
                 }
-                if (secUnload == 2) {
-                    totManager.msgLoad(ChatColor.WHITE + "Train is apporaching station in " + ChatColor.AQUA + (secUnload - 1) + ChatColor.WHITE + " second!");
-                }
-                //testing next block
-                if (secUnload == 6) {
-                    if (TOTBlocks.getblock1() == Block1a.clear) {
-                        //change later
-                        blocks.Dispatch6();
-                        totManager.msgOps("block6 dispatched");
-
+                if (secUnload == 85) {
+                    if (TOTBlocks.getblock1a() == Block1a.clear) {
+                        blocks.unloadDispatch();
+                        blocks.switch1a();
+                        TOTBlocks.setblock1a(Block1a.holding);
+                        totManager.msgOps("Block1a Selected");
+                    } else if (TOTBlocks.getblock1b() == Block1b.clear) {
+                        blocks.unloadDispatch();
+                        blocks.switch1b();
+                        TOTBlocks.setblock1b(Block1b.holding);
+                        totManager.msgOps("Block1b Selected");
                     } else {
-                        secUnload = 10;
-                        totManager.msgOps("block6 waiting block1");
+                        secUnload = 82;
                     }
-
                 }
-                //open restraints
-                if (secUnload == 34) {
-                    blocks.OpenRestraints();
-                    TOTBlocks.setblock6(Block99.restraints);
+                if (secUnload == 80) {
+                    //rotate
                 }
-                if (secUnload == 35) {
-                    totManager.msgOps("block6 timer started");
+                if (secUnload == 77) {
+                    //back
                 }
-                if (secUnload <= 70 && secUnload >= 3 && (TOTBlocks.getblock1() == Block1a.dispatch || TOTBlocks.getblock1() == Block1a.clear)) {
-                    totManager.msgLoad(ChatColor.WHITE + "Train is apporaching station in " + ChatColor.AQUA + (secUnload - 1) + ChatColor.WHITE + " seconds!");
-                    //change later
+                if (secUnload == 63) {
+                    //door closed
                 }
-                --secUnload;
+                if (secUnload == 43) {
+                    blocks.openDoorUnload();
+                    blocks.openRestraints();
+                }
+                if (secUnload == 36) {
+                    //forward
+                }
+                if (secUnload == 17) {
+                    //rotate
+                }
+                if (secUnload == 5) {
+                    blocks.openSlidingDoorUnload();
+                }
+                if (secUnload >= 0) {
+                    totManager.msgOps("Un: Timer at" + secUnload);
+                }
+                secUnload++;
             }
         };
         unloadingTask.runTaskTimer((Plugin)main.getInstance(), 0L, 20L);
@@ -345,12 +325,6 @@ public class TOTTimers {
             unloadingTask = null; // Optional: clear the reference
         }
     }
-
-    /*
-    launchTimer
-    need dan for this
-     */
-
     /*
     checkTimer
     5 sec timer overall

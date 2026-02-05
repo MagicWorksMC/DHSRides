@@ -65,7 +65,7 @@ Correlate functions with redstone block locations
 
     //spawnTrains
     public void spawnTrains() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -1, 42, 2183);
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -4, 42, 2184);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void killTrains() {
@@ -75,7 +75,7 @@ Correlate functions with redstone block locations
     //block1
     //openGates
     public void doorOpenA() {
-       final Location loc = new Location(Bukkit.getWorld("Parks"), -1, 42, 2188);
+       final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 42, 2188);
        loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void doorOpenB() {
@@ -83,15 +83,15 @@ Correlate functions with redstone block locations
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void closeRestraintsA() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 42, 2188);
-        loc.getBlock().setType(Material.REDSTONE_BLOCK);
-    }
-    public void closeRestraintsB() {
         final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 42, 2192);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
+    public void closeRestraintsB() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 42, 2188);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
     public void doorCloseA() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -1, 42, 2188);
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 42, 2190);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void doorCloseB() {
@@ -155,6 +155,10 @@ Correlate functions with redstone block locations
         final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2195);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
+    public void hallwayA15() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -6, 46, 2193);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
     public void hallwayA1() {
         final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2193);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
@@ -167,32 +171,52 @@ Correlate functions with redstone block locations
         final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2187);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
+    public void demA15() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -6, 46, 2187);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
     public void bottomA() {
         final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2191);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void boardingB() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2197);
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2197);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
-    public void hallwayB5() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2195);
+    public void hallwayB4() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 8, 46, 2195);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void hallwayB1() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2193);
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2193);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
-    public void demB4() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2189);
+    public void hallwayB15() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 12, 46, 2193);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void demB5() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2189);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void demB1() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2187);
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2187);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void demB15() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 12, 46, 2187);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void bottomB() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2191);
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2191);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void switch1a() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 34, 2179);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void switch1b() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2181);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
 }

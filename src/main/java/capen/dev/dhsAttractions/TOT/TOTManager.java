@@ -95,6 +95,9 @@ public class TOTManager implements Listener {
         TOTBlocks.setblock2(Block2.clear);
         TOTBlocks.setblock3(Block3.occupied);
         TOTBlocks.setblock99(Block99.clear);
+
+        totTimers.boardingATimer();
+        totTimers.unloadingTimer();
     }
 
     /*Ride Waiting Function
@@ -110,7 +113,10 @@ public class TOTManager implements Listener {
         blocks.killTrains();
         totTimers.killcheckTimer();
         totTimers.killLoadingTimer();
+        totTimers.killLoading2Timer();
         totTimers.killUnloadingTimer();
+        totTimers.killTower1Timer();
+        totTimers.killTower2Timer();
         msgOps("Ride is waiting at " + getESTTime());
         load.clear();
         load2.clear();
@@ -157,7 +163,7 @@ public class TOTManager implements Listener {
         blocks.killTrains();
         totTimers.killcheckTimer();
         totTimers.killLoadingTimer();
-        totTimers.killUnloadingTimer();
+        //totTimers.killUnloadingTimer();
         //config change
         setRideStatus("open");
         msgOps("Ride is open & waiting at " + getESTTime());
@@ -175,7 +181,10 @@ public class TOTManager implements Listener {
         blocks.killTrains();
         totTimers.killcheckTimer();
         totTimers.killLoadingTimer();
+        totTimers.killLoading2Timer();
         totTimers.killUnloadingTimer();
+        totTimers.killTower1Timer();
+        totTimers.killTower2Timer();
         //config change
         setRideStatus("closed");
         msgOps("Ride is closed at " + getESTTime());
