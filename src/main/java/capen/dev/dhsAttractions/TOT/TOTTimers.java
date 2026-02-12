@@ -58,7 +58,7 @@ public class TOTTimers {
     1 sec cancel
      */
     public void boardingATimer() {
-        secBoardA = 75;
+        secBoardA = 85;
         loadingTask = new BukkitRunnable() {
             @Override
             public void run() {
@@ -87,7 +87,7 @@ public class TOTTimers {
                 if (secBoardA == 70) {
                     blocks.boardingA();
                 }
-                if (secBoardA <= 80) {
+                if (secBoardA <= 85) {
                     totManager.msgOps("BoardA: Timer at" + secBoardA);
                 }
                 --secBoardA;
@@ -96,7 +96,7 @@ public class TOTTimers {
         loadingTask.runTaskTimer((Plugin)main.getInstance(), 0L, 20L);
     }
     public void boardingBTimer() {
-        secBoardB = 80;
+        secBoardB = 85;
         loading2Task = new BukkitRunnable() {
             @Override
             public void run() {
@@ -123,9 +123,9 @@ public class TOTTimers {
                     blocks.doorOpenB();
                 }
                 if (secBoardB == 70) {
-                    blocks.bottomB();
+                    blocks.boardingB();
                 }
-                if (secBoardB <= 80) {
+                if (secBoardB <= 85) {
                     totManager.msgOps("BoardB: Timer at" + secBoardB);
                 }
                 --secBoardB;
@@ -290,7 +290,7 @@ public class TOTTimers {
                     }
                 }
                 if (secUnload == 80) {
-                    //rotate
+                    blocks.exit1();
                 }
                 if (secUnload == 77) {
                     //back
@@ -306,7 +306,7 @@ public class TOTTimers {
                     //forward
                 }
                 if (secUnload == 17) {
-                    //rotate
+                    blocks.exit7();
                 }
                 if (secUnload == 5) {
                     blocks.openSlidingDoorUnload();

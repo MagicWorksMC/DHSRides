@@ -133,8 +133,8 @@ Correlate functions with redstone block locations
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void unloadDispatch() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), 6, 35, 2191);
-        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 4, 35, 2192);
+        loc.getBlock().setType(Material.REDSTONE_TORCH);
     }
     //Check
     public void dispatchB1() {
@@ -216,7 +216,16 @@ Correlate functions with redstone block locations
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void switch1b() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2181);
+        totManager.msgOps("Passed");
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 34, 2181);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void exit7() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 38, 2195);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void exit1() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 38, 2193);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
 }
