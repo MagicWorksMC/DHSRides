@@ -96,7 +96,7 @@ public class TOTManager implements Listener {
         TOTBlocks.setblock3(Block3.occupied);
         TOTBlocks.setblock99(Block99.clear);
 
-        totTimers.boardingATimer();
+        totTimers.Tower1Timer(100);
         //NO NEED USED VIA SWITCHER totTimers.unloadingTimer();
     }
 

@@ -13,10 +13,12 @@ public class TOTCommandManager {
     //Connect to other classes
     public static TOTTimers totTimers;
     public static TOTBlocks totBlocks;
+    public static TOTManager totManager;
 
-    public TOTCommandManager(TOTTimers totTimers, TOTBlocks totBlocks) {
+    public TOTCommandManager(TOTTimers totTimers, TOTBlocks totBlocks, TOTManager totManager) {
         this.totTimers = totTimers;
         this.totBlocks = totBlocks;
+        this.totManager = totManager;
     }
 
     //Change block state "rrcChangeBlockState"
@@ -31,60 +33,81 @@ public class TOTCommandManager {
         if (block.equalsIgnoreCase("block1a")) {
             if (status.equalsIgnoreCase("holding")) {
                 TOTBlocks.setblock1a(Block1a.holding);
+                totManager.msgOps("Block1a: " + TOTBlocks.getblock1a());
             }
             if (status.equalsIgnoreCase("restraintsunlocked")) {
                 TOTBlocks.setblock1a(Block1a.restraintsunlocked);
+                totManager.msgOps("Block1a: " + TOTBlocks.getblock1a());
             }
             if (status.equalsIgnoreCase("restraintsdoorsunlocked")) {
                 TOTBlocks.setblock1a(Block1a.restraintsdoorsunlocked);
+                totManager.msgOps("Block1a: " + TOTBlocks.getblock1a());
             }
             if (status.equalsIgnoreCase("dispatcha")) {
                 TOTBlocks.setblock1a(Block1a.dispatcha);
+                totManager.msgOps("Block1a: " + TOTBlocks.getblock1a());
             }
             if (status.equalsIgnoreCase("dispatchb")) {
                 TOTBlocks.setblock1a(Block1a.dispatchb);
+                totManager.msgOps("Block1a: " + TOTBlocks.getblock1a());
             }
             if (status.equalsIgnoreCase("clear")) {
                 TOTBlocks.setblock1a(Block1a.clear);
+                totManager.msgOps("Block1a: " + TOTBlocks.getblock1a());
+
             }
             if (status.equalsIgnoreCase("timer")) {
                 totTimers.boardingATimer();
+                totManager.msgOps("TowerA Boarding Timer has begun! Block1a: " + TOTBlocks.getblock1a() + " Block3: " + TOTBlocks.getblock3());
             }
         }
 
         if (block.equalsIgnoreCase("block1b")) {
             if (status.equalsIgnoreCase("holding")) {
                 TOTBlocks.setblock1b(Block1b.holding);
+                totManager.msgOps("Block1b: " + TOTBlocks.getblock1b());
             }
             if (status.equalsIgnoreCase("restraintsunlocked")) {
                 TOTBlocks.setblock1b(Block1b.restraintsunlocked);
+                totManager.msgOps("Block1b: " + TOTBlocks.getblock1b());
             }
             if (status.equalsIgnoreCase("restraintsdoorsunlocked")) {
                 TOTBlocks.setblock1b(Block1b.restraintsdoorsunlocked);
+                totManager.msgOps("Block1b: " + TOTBlocks.getblock1b());
             }
             if (status.equalsIgnoreCase("dispatcha")) {
                 TOTBlocks.setblock1b(Block1b.dispatcha);
+                totManager.msgOps("Block1b: " + TOTBlocks.getblock1b());
             }
             if (status.equalsIgnoreCase("dispatchb")) {
                 TOTBlocks.setblock1b(Block1b.dispatchb);
+                totManager.msgOps("Block1b: " + TOTBlocks.getblock1b());
             }
             if (status.equalsIgnoreCase("clear")) {
                 TOTBlocks.setblock1b(Block1b.clear);
+                totManager.msgOps("Block1b: " + TOTBlocks.getblock1b());
             }
             if (status.equalsIgnoreCase("timer")) {
                 totTimers.boardingBTimer();
+                totManager.msgOps("TowerB Boarding Timer has begun! Block1b: " + TOTBlocks.getblock1b() + " Block3: " + TOTBlocks.getblock3());
+
             }
         }
 
         if (block.equalsIgnoreCase("block2")) {
             if (status.equalsIgnoreCase("holding")) {
                 TOTBlocks.setblock2(Block2.holding);
+                totManager.msgOps("Block2: " + TOTBlocks.getblock2());
+
             }
             if (status.equalsIgnoreCase("occupied")) {
                 TOTBlocks.setblock2(Block2.occupied);
+                totManager.msgOps("Block2: " + TOTBlocks.getblock2());
+
             }
             if (status.equalsIgnoreCase("clear")) {
                 TOTBlocks.setblock2(Block2.clear);
+                totManager.msgOps("Block2: " + TOTBlocks.getblock2());
                 if (TOTBlocks.getblock1b() == Block1b.holding) {
                     //totBlocks.ReleaseBravo();
                 }
@@ -94,25 +117,36 @@ public class TOTCommandManager {
         if (block.equalsIgnoreCase("block3")) {
             if (status.equalsIgnoreCase("holding")) {
                 TOTBlocks.setblock3(Block3.holding);
+                totManager.msgOps("Block3: " + TOTBlocks.getblock3());
+
             }
             if (status.equalsIgnoreCase("occupied")) {
                 TOTBlocks.setblock3(Block3.occupied);
+                totManager.msgOps("Block3: " + TOTBlocks.getblock3());
+
             }
             if (status.equalsIgnoreCase("restraints")) {
                 TOTBlocks.setblock3(Block3.restraints);
+                totManager.msgOps("Block3: " + TOTBlocks.getblock3());
+
             }
             if (status.equalsIgnoreCase("dispatch")) {
                 TOTBlocks.setblock3(Block3.dispatch);
+                totManager.msgOps("Block3: " + TOTBlocks.getblock3());
+
                 //totTimers.unloadingTimer();
             }
             if (status.equalsIgnoreCase("clear")) {
                 TOTBlocks.setblock3(Block3.clear);
+                totManager.msgOps("Block3: " + TOTBlocks.getblock3());
                 if (TOTBlocks.getblock2() == Block2.holding) {
                     //totBlocks.ReleaseEcho();
                 }
             }
             if (status.equalsIgnoreCase("timer")) {
                 totTimers.unloadingTimer();
+                totManager.msgOps("Unload Timer has begun! Block3: " + TOTBlocks.getblock3() + " Block2: " + TOTBlocks.getblock2());
+
             }
         }
 
@@ -155,6 +189,9 @@ public class TOTCommandManager {
                 return TOTBlocks.getblock99().toString();
             case "global":
                 return TOTBlocks.getglobal().toString();
+            case "all":
+                return "\nblock1a: " + TOTBlocks.getblock1a().toString() + "\nblock1b: " + TOTBlocks.getblock1b().toString() + "\nblock2: " + TOTBlocks.getblock2().toString() + "\nblock3: " + TOTBlocks.getblock3().toString() + "\nglobal: " + TOTBlocks.getglobal().toString();
+
             default:
                 return "Invalid block name: " + block;
         }

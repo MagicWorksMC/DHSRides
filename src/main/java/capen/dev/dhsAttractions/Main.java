@@ -65,7 +65,7 @@ public final class Main extends JavaPlugin {
         // Step 6: Continue setup
         rrcCommandManager = new RRCCommandManager(rrcTimers, rrcBlocks);
         sddCommandManager = new SDDCommandManager(sddTimers, sddBlocks);
-        totCommandManager = new TOTCommandManager(totTimers, totBlocks);
+        totCommandManager = new TOTCommandManager(totTimers, totBlocks, totManager);
         Bukkit.getPluginManager().registerEvents(rrcManager, this);
         Bukkit.getPluginManager().registerEvents(sddManager, this);
         Bukkit.getPluginManager().registerEvents(totManager, this);

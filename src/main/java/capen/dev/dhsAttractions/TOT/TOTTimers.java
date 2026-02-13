@@ -58,12 +58,12 @@ public class TOTTimers {
     1 sec cancel
      */
     public void boardingATimer() {
-        secBoardA = 85;
+        secBoardA = 95;
         loadingTask = new BukkitRunnable() {
             @Override
             public void run() {
                 if (secBoardA == 1) {
-                    Tower1Timer();
+                    Tower1Timer(59);
                     totManager.removeAllLoad();
                     this.cancel();
                     return;
@@ -87,16 +87,13 @@ public class TOTTimers {
                 if (secBoardA == 70) {
                     blocks.boardingA();
                 }
-                if (secBoardA <= 85) {
-                    totManager.msgOps("BoardA: Timer at" + secBoardA);
-                }
                 --secBoardA;
             }
         };
         loadingTask.runTaskTimer((Plugin)main.getInstance(), 0L, 20L);
     }
     public void boardingBTimer() {
-        secBoardB = 85;
+        secBoardB = 95;
         loading2Task = new BukkitRunnable() {
             @Override
             public void run() {
@@ -125,9 +122,6 @@ public class TOTTimers {
                 if (secBoardB == 70) {
                     blocks.boardingB();
                 }
-                if (secBoardB <= 85) {
-                    totManager.msgOps("BoardB: Timer at" + secBoardB);
-                }
                 --secBoardB;
             }
         };
@@ -154,8 +148,10 @@ public class TOTTimers {
         7.5 sec raise (dem 1)
         1 dispatch and cancel
          */
-    public void Tower1Timer() {
-        secTowerA = 59;
+    public void Tower1Timer(int startValue) {
+        secTowerA = startValue;
+        //Adding this because start and normal run are different times
+        totManager.msgOps("Starting Tower1Timer at " + secTowerA + "!");
         tower1Task = new BukkitRunnable() {
             @Override
             public void run() {
@@ -166,39 +162,25 @@ public class TOTTimers {
                 }
                 if (secTowerA == 5) {
                     if (TOTBlocks.getblock2() == Block2.clear) {
-                        //dispatch redstone block
                         totManager.msgOps("a->d");
                     } else {
                         secTowerA = 6;
                         totManager.msgOps("a -- b");
                     }
                 }
-                if (secTowerA == 7) {
-                    blocks.demA1();
-                }
-                if (secTowerA == 8) {
-                    blocks.demA15();
-                }
-                if (secTowerA == 11) {
-                    blocks.demA4();
-                }
-                if (secTowerA == 54) {
-                    blocks.hallwayA1();
-                }
-                if (secTowerA == 55) {
-                    blocks.hallwayA15();
-                }
-                if (secTowerA == 59) {
-                    blocks.hallwayA5();
-                }
-                if (secTowerA <= 59) {
-                    totManager.msgOps("A: Timer at" + secTowerA);
-                }
+                if (secTowerA == 7) blocks.demA1();
+                if (secTowerA == 8) blocks.demA15();
+                if (secTowerA == 11) blocks.demA4();
+                if (secTowerA == 54) blocks.hallwayA1();
+                if (secTowerA == 55) blocks.hallwayA15();
+                if (secTowerA == startValue) blocks.hallwayA5();
+
                 --secTowerA;
             }
         };
-        tower1Task.runTaskTimer((Plugin)main.getInstance(), 0L, 20L);
+        tower1Task.runTaskTimer((Plugin) main.getInstance(), 0L, 20L);
     }
+
     public void Tower2Timer() {
         secTowerB = 59;
         tower2Task = new BukkitRunnable() {
@@ -235,9 +217,6 @@ public class TOTTimers {
                 }
                 if (secTowerB == 59) {
                     blocks.hallwayB4();
-                }
-                if (secTowerB <= 59) {
-                    totManager.msgOps("B: Timer at" + secTowerB);
                 }
                 --secTowerB;
             }
@@ -310,9 +289,6 @@ public class TOTTimers {
                 }
                 if (secUnload == 5) {
                     blocks.openSlidingDoorUnload();
-                }
-                if (secUnload >= 0) {
-                    totManager.msgOps("Un: Timer at" + secUnload);
                 }
                 secUnload++;
             }
