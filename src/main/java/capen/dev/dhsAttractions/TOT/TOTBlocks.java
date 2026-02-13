@@ -14,38 +14,38 @@ Ensure blocks get put in the startup state when ride begins
 Define all block functions for each section (use enum section for details)
 Correlate functions with redstone block locations
 
-#This is the second test
  */
     //connecting other classes
     public static Main main;
     public static TOTManager totManager;
     //Enums
-    private static Block1 b1state;
+    private static Block1a b1astate;
+    private static Block1b b1bstate;
     private static Block2 b2state;
     private static Block3 b3state;
-    private static Block4 b4state;
-    private static Block5 b5state;
-    private static Block6 b6state;
+    private static Block99 b99state;
     private static Global glstate;
 
     //Define startup blocks
     public TOTBlocks(Main main, TOTManager rrcManager) {
         this.main = main;
         this.totManager = rrcManager;
-        b1state = Block1.restraintsunlocked;
+        b1astate = Block1a.restraintsunlocked;
+        b1bstate = Block1b.restraintsunlocked;
         b2state = Block2.occupied;
         b3state = Block3.clear;
-        b4state = Block4.clear;
-        b5state = Block5.clear;
-        b6state = Block6.holding;
         glstate = Global.waiting;
     }
 
     //Define setBlock and getBlock functions for each section
-    public static void setblock1(final Block1 b1state) {
-        TOTBlocks.b1state = b1state;
+    public static void setblock1a(final Block1a b1astate) {
+        TOTBlocks.b1astate = b1astate;
     }
-    public static Block1 getblock1() { return b1state; }
+    public static Block1a getblock1a() { return b1astate; }
+    public static void setblock1b(final Block1b b1bstate) {
+        TOTBlocks.b1bstate = b1bstate;
+    }
+    public static Block1b getblock1b() { return b1bstate; }
     public static void setblock2(final Block2 b2state) {
         TOTBlocks.b2state = b2state;
     }
@@ -54,18 +54,10 @@ Correlate functions with redstone block locations
         TOTBlocks.b3state = b3state;
     }
     public static Block3 getblock3() { return b3state; }
-    public static void setblock4(final Block4 b4state) {
-        TOTBlocks.b4state = b4state;
+    public static void setblock99(final Block99 b99state) {
+        TOTBlocks.b99state = b99state;
     }
-    public static Block4 getblock4() { return b4state; }
-    public static void setblock5(final Block5 b5state) {
-        TOTBlocks.b5state = b5state;
-    }
-    public static Block5 getblock5() { return b5state; }
-    public static void setblock6(final Block6 b6state) {
-        TOTBlocks.b6state = b6state;
-    }
-    public static Block6 getblock6() { return b6state; }
+    public static Block99 getblock99() { return b99state; }
     public static void setglobal(final Global glstate) {
         TOTBlocks.glstate = glstate;
     }
@@ -82,113 +74,158 @@ Correlate functions with redstone block locations
     }
     //block1
     //openGates
-    public void OpenGates() {
-        if (this.b1state == Block1.restraintsunlocked) {
-            final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 42, 2188);
-            loc.getBlock().setType(Material.REDSTONE_BLOCK);
-            this.setblock1(Block1.restraintsgatesunlocked);
-        }
+    public void doorOpenA() {
+       final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 42, 2188);
+       loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
-    //closeGates
-    public void CloseGates() {
-        if (this.b1state == Block1.restraintsgatesunlocked) {
-            final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 42, 2190);
-            loc.getBlock().setType(Material.REDSTONE_BLOCK);
-            this.setblock1(Block1.restraintsunlocked);
-        }
-    }
-    //closeRestraints
-    public void CloseRestraint() {
-        if (this.b1state == Block1.restraintsunlocked) {
-            final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 34, 2195);
-            loc.getBlock().setType(Material.REDSTONE_BLOCK);
-            this.setblock1(Block1.holding);
-        }
-    }
-    //loadDispatch
-    public void LoadDispatch() {
-        if (this.b1state == Block1.holding || this.b2state == Block2.clear) {
-            final Location loc = new Location(Bukkit.getWorld("Parks"), 6, 43, 2191);
-            loc.getBlock().setType(Material.REDSTONE_BLOCK);
-            //Sensor will move block1 into Standby mode
-        }
-    }
-
-    //block2
-    //launchSequence
-    public static void Launch() {
-        if (TOTBlocks.getblock3() == Block3.clear && TOTBlocks.getblock2() == Block2.holding) {
-            final Location loc = new Location(Bukkit.getWorld("Parks"), -297, 36, 2640);
-            loc.getBlock().setType(Material.REDSTONE_BLOCK);
-            totManager.msgOps("Block 2 launch sequence started");
-        } else {
-            //TEMP TEMP TEMP TEMP
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    int sec = 7;
-                    if (sec == 0) {
-                        this.cancel();
-                        TOTBlocks.setblock2(Block2.holding);
-                        TOTBlocks.Launch();
-                        return;
-                    }
-                    if (sec == 1 && TOTBlocks.getblock3() != Block3.clear) {
-                        totManager.msgOps("Block 2 launch waiting");
-                        sec = 6;
-                    }
-                    --sec;
-                }
-            }.runTaskTimer((Plugin) main.getInstance(), 0L, 20L);
-        }
-    }
-    //release3
-    public void Release2() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -293, 36, 2640);
-        loc.getBlock().setType(Material.RED_STAINED_GLASS);
-    }
-    //hold2
-    public void Hold2() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -293, 36, 2640);
+    public void doorOpenB() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 42, 2188);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
-    public void Release3() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -293, 36, 2654);
-        loc.getBlock().setType(Material.RED_STAINED_GLASS);
-    }
-    //hold3
-    public void Hold3() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -293, 36, 2654);
+    public void closeRestraintsA() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 42, 2192);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
-    //release4
-    public void Release4() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -293, 36, 2670);
-        loc.getBlock().setType(Material.RED_STAINED_GLASS);
-    }
-    //hold4
-    public void Hold4() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -293, 36, 2670);
+    public void closeRestraintsB() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 42, 2188);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
-    //release5
-    public void Release5() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -293, 36, 2684);
-        loc.getBlock().setType(Material.RED_STAINED_GLASS);
-    }
-    //hold5
-    public void Hold5() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -293, 36, 2684);
+    public void doorCloseA() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 42, 2190);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
-    //release6
-    public void OpenRestraints() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -297, 36, 2696);
+    public void doorCloseB() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 42, 2190);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
-    //hold6
-    public void Dispatch6() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), -6, 35, 2191);
+    //Check
+    public void dispatchA1() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 6, 43, 2191);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    //
+    public void openDoorHallwayA() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 45, 2186);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void openDoorDemA() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 45, 2184);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void dispatchA2() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 6, 43, 2191);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void openDoorHallwayB() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 42, 2186);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void openSlidingDoorUnload() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 34, 2191);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void openDoorUnload() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 34, 2189);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void openRestraints() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 34, 2195);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void unloadDispatch() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 4, 35, 2192);
+        loc.getBlock().setType(Material.REDSTONE_TORCH);
+    }
+    //Check
+    public void dispatchB1() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 0, 43, 2182);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    //
+    public void dispatchB2() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 0, 43, 2182);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    //Animations
+    public void boardingA() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2197);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void hallwayA5() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2195);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void hallwayA15() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -6, 46, 2193);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void hallwayA1() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2193);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void demA4() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2189);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void demA1() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2187);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void demA15() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -6, 46, 2187);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void bottomA() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 46, 2191);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void boardingB() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2197);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void hallwayB4() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2195);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void hallwayB1() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2193);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void hallwayB15() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 12, 46, 2193);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void demB5() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2189);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void demB1() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2187);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void demB15() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 12, 46, 2187);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void bottomB() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2191);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void switch1a() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 34, 2179);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void switch1b() {
+        totManager.msgOps("Passed");
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 34, 2181);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void exit7() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 38, 2195);
+        loc.getBlock().setType(Material.REDSTONE_BLOCK);
+    }
+    public void exit1() {
+        final Location loc = new Location(Bukkit.getWorld("Parks"), -3, 38, 2193);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
 }

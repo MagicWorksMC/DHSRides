@@ -1,7 +1,7 @@
 package capen.dev.dhsAttractions.TOT.Enums;
 
 public enum Block2 {
-    //Block2 (clear, holding, launch, occupied)
+    //Block3 (clear, holding, occupied)
     clear("clear", 0),
     occupied("occupied", 0),
     holding("holding", 0);

@@ -171,7 +171,7 @@ public class DHSRideCommand implements CommandExecutor {
                     sender.sendMessage("Usage: /dhsride tot blocktest <block>");
                     return false;
                 }
-                totCommandManager.totBlockTest(block);
+                //totCommandManager.totBlockTest(block);
             } else if (action.equalsIgnoreCase("blockstatestatus")) {
                 if (block == null) {
                     sender.sendMessage("Usage: /dhsride tot blockstatestatus <block>");
