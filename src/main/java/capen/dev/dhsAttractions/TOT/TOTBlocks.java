@@ -184,7 +184,7 @@ Correlate functions with redstone block locations
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void hallwayB4() {
-        final Location loc = new Location(Bukkit.getWorld("Parks"), 8, 46, 2195);
+        final Location loc = new Location(Bukkit.getWorld("Parks"), 9, 46, 2195);
         loc.getBlock().setType(Material.REDSTONE_BLOCK);
     }
     public void hallwayB1() {

@@ -111,6 +111,9 @@ public class TOTCommandManager {
                     //totBlocks.ReleaseEcho();
                 }
             }
+            if (status.equalsIgnoreCase("timer")) {
+                totTimers.unloadingTimer();
+            }
         }
 
         if (block.equalsIgnoreCase("block99")) {

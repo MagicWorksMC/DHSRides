@@ -97,7 +97,7 @@ public class TOTManager implements Listener {
         TOTBlocks.setblock99(Block99.clear);
 
         totTimers.boardingATimer();
-        totTimers.unloadingTimer();
+        //NO NEED USED VIA SWITCHER totTimers.unloadingTimer();
     }
 
     /*Ride Waiting Function
@@ -163,7 +163,10 @@ public class TOTManager implements Listener {
         blocks.killTrains();
         totTimers.killcheckTimer();
         totTimers.killLoadingTimer();
-        //totTimers.killUnloadingTimer();
+        totTimers.killLoading2Timer();
+        totTimers.killUnloadingTimer();
+        totTimers.killTower1Timer();
+        totTimers.killTower2Timer();
         //config change
         setRideStatus("open");
         msgOps("Ride is open & waiting at " + getESTTime());

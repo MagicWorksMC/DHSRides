@@ -266,7 +266,7 @@ public class TOTTimers {
      */
 
     public void unloadingTimer() {
-        secUnload = 0;
+        secUnload = -5;
         unloadingTask = new BukkitRunnable() {
             @Override
             public void run() {
